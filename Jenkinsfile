@@ -30,7 +30,16 @@ pipeline {
         }
         stage('Verify Deployment') {
             steps {
-                sh 'curl -I http://localhost:8081'
+                script {
+                    // Wait for the container to be fully up and running
+                    sh '''
+                        until curl -s http://localhost:8081 > /dev/null; do
+                            echo "Waiting for server to be ready..."
+                            sleep 5
+                        done
+                        echo "Server is up and running!"
+                    '''
+                }
             }
         }
     }
