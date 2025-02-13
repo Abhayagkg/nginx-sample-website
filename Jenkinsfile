@@ -16,8 +16,15 @@ pipeline {
                         docker stop my-nginx-container || true
                         docker rm my-nginx-container || true
                     '''
-                    // Start a new container
-                    sh 'docker run -d --name my-nginx-container -p 8081:80 my-nginx-website:latest'
+                    // Start a new container with volume mounting and log redirection
+                    sh '''
+                        docker run -d \
+                            --name my-nginx-container \
+                            -p 8081:80 \
+                            -v /var/logs/nginx-sample-website.logs:/var/log/nginx/access.log \
+                            -v /path/to/local/data:/usr/share/nginx/html \
+                            my-nginx-website:latest
+                    '''
                 }
             }
         }
@@ -35,4 +42,4 @@ pipeline {
             echo 'Pipeline succeeded!'
         }
     }
-}
+}}
