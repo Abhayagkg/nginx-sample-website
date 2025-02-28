@@ -76,59 +76,69 @@
     </header>
 
     <div class="container">
-        <!-- Product 1: Pure A2 Milk -->
+        <!-- Product List -->
         <div class="product">
             <img src="https://media.istockphoto.com/id/183778031/photo/milk-bottle-clipping-path.jpg?s=612x612&w=0&k=20&c=RC3dmJPzsBSGnpfRtY0wjjb5G-LOLvxP4ZNmu_yJ8Qk=" alt="Pure A2 Milk">
             <div>
                 <h3>Pure A2 Milk</h3>
                 <p>Price: Rs. 100/Lt.</p>
-                <button class="order-button">Order Now</button>
+                <button class="order-button" onclick="addToCart('Pure A2 Milk', '100/Lt.')">Order Now</button>
             </div>
         </div>
 
-        <!-- Product 2: Pure A2 Ghee -->
         <div class="product">
             <img src="https://img.freepik.com/premium-photo/ghee-clarified-butter-desi-glass-jar-with-rosemary-natural-wooden-background_907525-7.jpg?uid=R187252564&ga=GA1.1.2042317799.1739444757&semt=ais_hybrid" alt="Pure A2 Ghee">
             <div>
                 <h3>Pure A2 Ghee</h3>
                 <p>Price: Rs. 2500/Kg.</p>
-                <button class="order-button">Order Now</button>
+                <button class="order-button" onclick="addToCart('Pure A2 Ghee', '2500/Kg.')">Order Now</button>
             </div>
         </div>
 
-        <!-- Product 3: Pure Cow's Milk Paneer -->
-        <div class="product">
-            <img src="https://img.freepik.com/free-photo/front-view-delicious-fresh-cheese_23-2150166967.jpg?uid=R187252564&ga=GA1.1.2042317799.1739444757&semt=ais_authors_boost" alt="Cow's Milk Paneer">
-            <div>
-                <h3>Pure Cow's Milk Paneer</h3>
-                <p>Price: Rs. 600/Kg.</p>
-                <button class="order-button">Order Now</button>
-            </div>
-        </div>
+        <!-- Add more products here -->
 
-        <!-- Product 4: Cow's Milk Chach -->
-        <div class="product">
-            <img src="https://img.freepik.com/free-photo/close-up-hand-holding-drink-glass_23-2149312426.jpg?uid=R187252564&ga=GA1.1.2042317799.1739444757&semt=ais_authors_boost" alt="Cow's Milk Chach">
-            <div>
-                <h3>Cow's Milk Chach</h3>
-                <p>Price: Rs. 30/Lt.</p>
-                <button class="order-button">Order Now</button>
-            </div>
-        </div>
-
-        <!-- Product 5: Pure Cow's Milk Curd -->
-        <div class="product">
-            <img src="https://img.freepik.com/free-photo/close-up-hand-holding-spoon-with-yogurt_23-2148660441.jpg?uid=R187252564&ga=GA1.1.2042317799.1739444757&semt=ais_authors_boost" alt="Cow's Milk Curd">
-            <div>
-                <h3>Pure Cow's Milk Curd</h3>
-                <p>Price: Rs. 150/Kg.</p>
-                <button class="order-button">Order Now</button>
-            </div>
-        </div>
     </div>
 
+    <!-- Cart Section -->
+    <div class="container" id="cart-section" style="display:none;">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <button class="order-button" onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <!-- Contact Section -->
     <div class="contact">
         <p>For more info, contact: <strong>8930820031</strong></p>
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        const cart = [];
+
+        function addToCart(productName, price) {
+            cart.push({ productName, price });
+            
+            // Show the cart section if hidden
+            document.getElementById('cart-section').style.display = 'block';
+
+            // Add item to cart list
+            const cartItems = document.getElementById('cart-items');
+            
+			const li = document.createElement('li');
+			
+			li.textContent = `${productName} - ${price}`;
+			
+			cartItems.appendChild(li);
+			
+			alert(`${productName} has been added to your cart!`);
+			
+		}
+
+		function placeOrder() {
+			alert('Thank you for placing your order!');
+			location.reload(); // Reload the page after placing the order
+		}
+	</script>
+
 </body>
 </html>
