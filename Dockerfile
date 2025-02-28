@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Set the working directory
-WORKDIR /app
+#WORKDIR /app
 
 # Copy the website files from the host to the container
 COPY ~/nginx-sample-website/ /usr/share/nginx/html/
