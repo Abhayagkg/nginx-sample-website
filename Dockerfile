@@ -11,7 +11,7 @@ RUN mkdir -p /var/log/nginx && \
 # COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Expose the necessary port (default Nginx port is 80)
-EXPOSE 8081
+EXPOSE 80
 
 # Ensure Nginx runs in the foreground
 CMD ["nginx", "-g", "daemon off;"]
