@@ -4,12 +4,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    try {
-                        sh 'docker build -t my-nginx-website:latest .'
-                    } catch (e) {
-                        echo "Failed to build Docker image: ${e}"
-                        currentBuild.result = 'FAILURE'
-                    }
+                    sh 'docker build -t my-nginx-website:latest .'
                 }
             }
         }
@@ -21,12 +16,13 @@ pipeline {
                         docker stop my-nginx-container || true
                         docker rm my-nginx-container || true
                     '''
-                    // Start a new container
+                    // Start a new container with volume mounting and log redirection
                     sh '''
                         docker run -d \
                             --name my-nginx-container \
                             -p 8081:80 \
-                            -v /var/logs/nginx-sample-website:/var/log/nginx \
+                            -v /var/logs/nginx-sample-website.logs:/var/log/nginx/access.log:rw \
+                            -v /path/to/local/data:/usr/share/nginx/html:ro \
                             my-nginx-website:latest
                     '''
                 }
