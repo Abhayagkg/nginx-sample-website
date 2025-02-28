@@ -5,7 +5,7 @@ FROM nginx:latest
 WORKDIR /app
 
 # Copy the website files from the host to the container
-COPY nginx-sample-website/ /usr/share/nginx/html/
+COPY nginx-sample-website/website /usr/share/nginx/html/
 
 # Copy custom Nginx configuration files
 COPY default.conf /etc/nginx/conf.d/default.conf
