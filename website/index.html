@@ -82,7 +82,7 @@
             <div>
                 <h3>Pure A2 Milk</h3>
                 <p>Price: Rs. 100/Lt.</p>
-                <button class="order-button" onclick="addToCart('Pure A2 Milk', '100/Lt.')">Order Now</button>
+                <button class="order-button">Order Now</button>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
             <div>
                 <h3>Pure A2 Ghee</h3>
                 <p>Price: Rs. 2500/Kg.</p>
-                <button class="order-button" onclick="addToCart('Pure A2 Ghee', '2500/Kg.')">Order Now</button>
+                <button class="order-button">Order Now</button>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
             <div>
                 <h3>Pure Cow's Milk Paneer</h3>
                 <p>Price: Rs. 600/Kg.</p>
-                <button class="order-button" onclick="addToCart('Pure Cow\\'s Milk Paneer', '600/Kg.')">Order Now</button>
+                <button class="order-button">Order Now</button>
             </div>
         </div>
 
@@ -112,7 +112,7 @@
             <div>
                 <h3>Cow's Milk Chach</h3>
                 <p>Price: Rs. 30/Lt.</p>
-                <button class="order-button" onclick="addToCart('Cow\\'s Milk Chach', '30/Lt.')">Order Now</button>
+                <button class="order-button">Order Now</button>
             </div>
         </div>
 
@@ -122,51 +122,13 @@
             <div>
                 <h3>Pure Cow's Milk Curd</h3>
                 <p>Price: Rs. 150/Kg.</p>
-                <button class="order-button" onclick="addToCart('Pure Cow\\'s Milk Curd', '150/Kg.')">Order Now</button>
+                <button class="order-button">Order Now</button>
             </div>
         </div>
     </div>
 
-    <!-- Cart Section -->
-    <div class="container" id="cart-section" style="display:none;">
-        <h2>Your Cart</h2>
-        <ul id="cart-items"></ul>
-        <button class="order-button" onclick="placeOrder()">Place Order</button>
-    </div>
-
-    <!-- Contact Section -->
     <div class="contact">
         <p>For more info, contact: <strong>8930820031</strong></p>
     </div>
-
-    <!-- JavaScript -->
-    <script>
-        const cart = [];
-
-        function addToCart(productName, price) {
-            cart.push({ productName, price });
-            
-            // Show the cart section if hidden
-            document.getElementById('cart-section').style.display = 'block';
-
-            // Add item to cart list
-            const cartItems = document.getElementById('cart-items');
-            
-            const li = document.createElement('li');
-            
-            li.textContent = `${productName} - ${price}`;
-            
-            cartItems.appendChild(li);
-            
-            alert(`${productName} has been added to your cart!`);
-            
-        }
-
-        function placeOrder() {
-            alert('Thank you for placing your order!');
-            location.reload(); // Reload the page after placing the order
-        }
-    </script>
-
 </body>
 </html>
