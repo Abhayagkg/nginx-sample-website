@@ -1,20 +1,14 @@
 # Use the official Nginx image as a base
 FROM nginx:latest
 
-# Set the working directory
-WORKDIR /app
+# Ensure the logs directory exists and set the correct permissions
+RUN mkdir -p /var/log/nginx && \
+    touch /var/log/nginx/access.log && \
+    chown -R nginx:nginx /var/log/nginx
 
-# Copy the website files from the host to the container
-COPY nginx-sample-website/website /usr/share/nginx/html/
-
-# Copy custom Nginx configuration files
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-RUN mv /usr/share/nginx/html/website/index.htm /usr/share/nginx/html/index.html
-
-# Ensure Nginx has read access to the website files
-RUN chown -R nginx:nginx /usr/share/nginx/html
-RUN chmod -R 755 /usr/share/nginx/html
+# Copy custom Nginx configuration files, if any (optional)
+# COPY nginx.conf /etc/nginx/nginx.conf
+# COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Expose the necessary port (default Nginx port is 80)
 EXPOSE 80
