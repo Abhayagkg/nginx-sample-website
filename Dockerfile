@@ -2,13 +2,15 @@
 FROM nginx:latest
 
 # Set the working directory
-#WORKDIR /app
+WORKDIR /app
 
 # Copy the website files from the host to the container
-COPY ~/nginx-sample-website/ /usr/share/nginx/html/
+COPY nginx-sample-website/ /usr/share/nginx/html/
 
 # Copy custom Nginx configuration files
 COPY default.conf /etc/nginx/conf.d/default.conf
+
+RUN mv /usr/share/nginx/html/website/index.htm /usr/share/nginx/html/index.html
 
 # Ensure Nginx has read access to the website files
 RUN chown -R nginx:nginx /usr/share/nginx/html
