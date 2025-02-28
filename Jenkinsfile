@@ -21,14 +21,13 @@ pipeline {
                         docker run -d \
                             --name my-nginx-container \
                             -p 8081:80 \
-                            -v /var/logs/nginx-sample-website.logs:/var/log/nginx/access.log \
-                            -v /path/to/local/data:/usr/share/nginx/html \
+                            -v /var/logs/nginx-sample-website.logs:/var/log/nginx/access.log:rw \
+                            -v /path/to/local/data:/usr/share/nginx/html:ro \
                             my-nginx-website:latest
                     '''
                 }
             }
         }
-        
     }
     post {
         failure {
