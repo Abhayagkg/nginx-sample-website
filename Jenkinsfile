@@ -22,7 +22,7 @@ pipeline {
                             --name my-nginx-container \
                             -p 8081:80 \
                             -v /var/logs/nginx-sample-website:/var/log/nginx \
-                            -v ~/nginx-sample-website/website/index.html :/usr/share/nginx/html:ro \
+                            -v ~/nginx-sample-website:/usr/share/nginx/html:ro \
                             my-nginx-website:latest
                     '''
                 }
